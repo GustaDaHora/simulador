@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação de economia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Simulação de economia</h1>
+            <p>Descubra quanto você pode economizar com energia solar</p>
+        </div>
+        
+        <div class="content">
+            <div class="questionnaire">
+                <h2>Calcule sua Economia</h2>
+                <div class="input-group">
+                    <label for="electricity-bill">Qual é o valor da sua conta de luz mensal?</label>
+                    <div class="slider-container">
+                        <span>R$ 100</span>
+                        <input type="range" id="electricity-slider" class="slider" min="100" max="2000" value="600" step="10">
+                        <span>R$ 2000</span>
+                    </div>
+                    <div class="manual-input">
+                        <span>Valor atual:</span>
+                        <input type="number" id="electricity-input" min="100" max="2000" value="600" step="10">
+                        <span>reais</span>
+                    </div>
+                </div>
+                <button class="btn-consultant" onclick="openModal()">Falar com um Consultor</button>
+            </div>
+            
+            <div class="results">
+                <h2>Simulação Personalizada</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Conta de Luz Atual</h3>
+                        <div class="value" id="current-bill">R$ 600,00</div>
+                        <div class="description">Valor mensal médio</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Parcela Mensal do Sistema</h3>
+                        <div class="value" id="monthly-payment">R$ 382,59</div>
+                        <div class="description">Financiamento solar</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Economia Mensal</h3>
+                        <div class="value" id="monthly-savings">R$ 217,41</div>
+                        <div class="description">Sua economia desde o 1º mês</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Custo Total do Projeto</h3>
+                        <div class="value" id="total-cost">R$ 14.776,45</div>
+                        <div class="description">Investimento completo</div>
+                    </div>
+                </div>
+                
+                <div class="technical-details">
+                    <h3>Detalhes Técnicos da Instalação</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <span class="tech-label">Geração Mensal Média:</span>
+                            <span class="tech-value" id="monthly-generation">649 kWh/mês</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-label">Potência do Sistema:</span>
+                            <span class="tech-value" id="system-power">5,5 kWp</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-label">Número de Painéis:</span>
+                            <span class="tech-value" id="panel-count">10 painéis de 550W</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-label">Inversor:</span>
+                            <span class="tech-value" id="inverter-model">1x WEG SIW200G M050</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-label">Desconto Aplicado:</span>
+                            <span class="tech-value" id="discount">15% OFF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-options">
+                    <h3>Opções de Pagamento</h3>
+                    <div class="payment-highlight">
+                        <div class="payment-amount" id="installment-amount">60x de R$ 382,59</div>
+                        <div class="payment-terms">com 120 dias de carência</div>
+                        <div class="discount-badge">🎉 Promoção Especial!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="consultModal">
+        <div class="modal-content">
+            <h3>🌟 Fale com um Consultor</h3>
+            <p>Nossa equipe especializada está pronta para criar uma proposta personalizada para você. Entre em contato conosco através dos canais abaixo:</p>
+            <p><strong>📞 Telefone:</strong> (65) 3028-4500<br>
+            <strong>📱 WhatsApp:</strong> (65) 99999-9999<br>
+            <strong>✉️ Email:</strong> contato@email.com.br</p>
+            <button class="btn-close" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
