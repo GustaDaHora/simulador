@@ -1,109 +1,245 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulação de economia</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Simulação de economia</h1>
-            <p>Descubra quanto você pode economizar com energia solar</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar Savings Simulation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="first-page"></div>
+      <div class="second-page">
+        <div>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
+          omnis officia cupiditate odit vitae at dicta nostrum libero quod
+          atque, repellat quo corporis! Modi odit laboriosam veritatis, culpa
+          consectetur ipsum!
         </div>
-        
-        <div class="content">
-            <div class="questionnaire">
-                <h2>Calcule sua Economia</h2>
-                <div class="input-group">
-                    <label for="electricity-bill">Qual é o valor da sua conta de luz mensal?</label>
-                    <div class="slider-container">
-                        <span>R$ 100</span>
-                        <input type="range" id="electricity-slider" class="slider" min="100" max="2000" value="600" step="10">
-                        <span>R$ 2000</span>
-                    </div>
-                    <div class="manual-input">
-                        <span>Valor atual:</span>
-                        <input type="number" id="electricity-input" min="100" max="2000" value="600" step="10">
-                        <span>reais</span>
-                    </div>
-                </div>
-                <button class="btn-consultant" onclick="openModal()">Falar com um Consultor</button>
+      </div>
+      <footer>
+        <p>© 2023 Solar Savings Simulation. Todos os direitos reservados.</p>
+        <p>Desenvolvido por <a href="" target="_blank">Seu Nome</a></p>
+      </footer>
+      <div class="form-section" id="user-form">
+        <div class="image-header">
+            <img class="sol" src="./sun.png" alt="">
+            <img class="casa2" src="./casa2.png" alt="">
+            <img class="nuvem" src="./cloud.png" alt="">
+        </div>
+        <div class="form-instructions">
+          <h2>🌞 Descubra Seu Potencial de Economia</h2>
+          <p>
+            Complete o formulário abaixo para descobrir quanto você pode
+            economizar com energia solar personalizada para seu perfil.
+          </p>
+        </div>
+
+        <form class="solar-form" id="solarForm">
+          <div class="form-group">
+            <label for="form-electricity-bill"
+              >Qual é o valor da sua conta de luz mensal?</label
+            >
+            <div class="slider-container">
+              <span>R$ 100</span>
+              <input
+                type="range"
+                id="form-electricity-slider"
+                class="slider"
+                min="100"
+                max="1000"
+                value="600"
+                step="10"
+              />
+              <span>R$ 1000</span>
             </div>
-            
-            <div class="results">
-                <h2>Simulação Personalizada</h2>
-                <div class="results-grid">
-                    <div class="result-card">
-                        <h3>Conta de Luz Atual</h3>
-                        <div class="value" id="current-bill">R$ 600,00</div>
-                        <div class="description">Valor mensal médio</div>
-                    </div>
-                    <div class="result-card">
-                        <h3>Parcela Mensal do Sistema</h3>
-                        <div class="value" id="monthly-payment">R$ 382,59</div>
-                        <div class="description">Financiamento solar</div>
-                    </div>
-                    <div class="result-card">
-                        <h3>Economia Mensal</h3>
-                        <div class="value" id="monthly-savings">R$ 217,41</div>
-                        <div class="description">Sua economia desde o 1º mês</div>
-                    </div>
-                    <div class="result-card">
-                        <h3>Custo Total do Projeto</h3>
-                        <div class="value" id="total-cost">R$ 14.776,45</div>
-                        <div class="description">Investimento completo</div>
-                    </div>
-                </div>
-                
-                <div class="technical-details">
-                    <h3>Detalhes Técnicos da Instalação</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <span class="tech-label">Geração Mensal Média:</span>
-                            <span class="tech-value" id="monthly-generation">649 kWh/mês</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Potência do Sistema:</span>
-                            <span class="tech-value" id="system-power">5,5 kWp</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Número de Painéis:</span>
-                            <span class="tech-value" id="panel-count">10 painéis de 550W</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Inversor:</span>
-                            <span class="tech-value" id="inverter-model">1x WEG SIW200G M050</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Desconto Aplicado:</span>
-                            <span class="tech-value" id="discount">15% OFF</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="payment-options">
-                    <h3>Opções de Pagamento</h3>
-                    <div class="payment-highlight">
-                        <div class="payment-amount" id="installment-amount">60x de R$ 382,59</div>
-                        <div class="payment-terms">com 120 dias de carência</div>
-                        <div class="discount-badge">🎉 Promoção Especial!</div>
-                    </div>
-                </div>
+            <div class="manual-input">
+              <span>Valor atual:</span>
+              <input
+                type="number"
+                id="form-electricity-input"
+                min="100"
+                max="1000"
+                value="600"
+                step="10"
+                required
+              />
+              <span>reais</span>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label>Finalidade da instalação:</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input
+                  type="radio"
+                  name="installation-type"
+                  value="residence"
+                  checked
+                />
+                <span class="radio-custom"></span>
+                <span class="radio-text">🏠 Residência</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="installation-type" value="business" />
+                <span class="radio-custom"></span>
+                <span class="radio-text">🏢 Comércio</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="installation-type" value="industry" />
+                <span class="radio-custom"></span>
+                <span class="radio-text">🏭 Indústria</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="installation-type" value="rural" />
+                <span class="radio-custom"></span>
+                <span class="radio-text">🌾 Área Rural</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="city">Cidade onde será instalado o sistema:</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="Digite sua cidade"
+              required
+              autocomplete="address-level2"
+            />
+            <div class="city-suggestions" id="citySuggestions"></div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="full-name">Nome completo:</label>
+              <input
+                type="text"
+                id="full-name"
+                name="full-name"
+                placeholder="Digite seu nome completo"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="seu@email.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefone/WhatsApp:</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="(65) 99999-9999"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-view-results">
+            <span>Ver Resultado da Simulação</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </form>
+      </div>
+      <div class="results" id="calculation-results" style="display: none">
+        <div class="results-header">
+          <h2>
+            Simulação Personalizada para <span id="user-name-display"></span>
+          </h2>
+          <p>
+            Baseado em sua conta de luz de
+            <span id="user-bill-display"></span> em
+            <span id="user-city-display"></span>
+          </p>
+          <button class="btn-edit-form" onclick="editForm()">
+            ✏️ Editar Informações
+          </button>
         </div>
-    </div>
-    <div class="modal" id="consultModal">
-        <div class="modal-content">
-            <h3>🌟 Fale com um Consultor</h3>
-            <p>Nossa equipe especializada está pronta para criar uma proposta personalizada para você. Entre em contato conosco através dos canais abaixo:</p>
-            <p><strong>📞 Telefone:</strong> (65) 3028-4500<br>
-            <strong>📱 WhatsApp:</strong> (65) 99999-9999<br>
-            <strong>✉️ Email:</strong> contato@email.com.br</p>
-            <button class="btn-close" onclick="closeModal()">Fechar</button>
+        <button class="btn-consultant">Falar com um Consultor</button>
+
+        <h2>Seus Resultados</h2>
+        <div class="results-grid">
+          <div class="result-card">
+            <h3>Conta de Luz Atual</h3>
+            <div class="value" id="current-bill">R$ 600,00</div>
+            <div class="description">Valor mensal médio</div>
+          </div>
+          <div class="result-card">
+            <h3>Parcela Mensal do Sistema</h3>
+            <div class="value" id="monthly-payment">R$ 382,59</div>
+            <div class="description">Financiamento solar</div>
+          </div>
+          <div class="result-card">
+            <h3>Economia Mensal</h3>
+            <div class="value" id="monthly-savings">R$ 217,41</div>
+            <div class="description">Sua economia desde o 1º mês</div>
+          </div>
+          <div class="result-card">
+            <h3>Custo Total do Projeto</h3>
+            <div class="value" id="total-cost">R$ 14.776,45</div>
+            <div class="description">Investimento completo</div>
+          </div>
         </div>
-    </div>
+
+        <div class="technical-details">
+          <h3>Detalhes Técnicos da Instalação</h3>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <span class="tech-label">Geração Mensal Média:</span>
+              <span class="tech-value" id="monthly-generation"
+                >649 kWh/mês</span
+              >
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Potência do Sistema:</span>
+              <span class="tech-value" id="system-power">5,5 kWp</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Número de Painéis:</span>
+              <span class="tech-value" id="panel-count"
+                >10 painéis de 550W</span
+              >
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Inversor:</span>
+              <span class="tech-value" id="inverter-model"
+                >1x WEG SIW200G M050</span
+              >
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Desconto Aplicado:</span>
+              <span class="tech-value" id="discount">15% OFF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-options">
+          <h3>Opções de Pagamento</h3>
+          <div class="payment-highlight">
+            <div class="payment-amount" id="installment-amount">
+              60x de R$ 382,59
+            </div>
+            <div class="payment-terms">com 120 dias de carência</div>
+            <button class="discount-badge">🎉 Promoção Especial!</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <img class="casa1" src="./casa1.png" alt="" />
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
