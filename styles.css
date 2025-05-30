@@ -51,6 +51,7 @@ header {
 }
 
 .lower-header {
+  width: 100%;
   height: 10vh;
   display: flex;
   justify-content: flex-end;
@@ -87,6 +88,16 @@ header {
   width: 20px;
   height: auto;
   transform: translate(0, 6%);
+}
+
+.nav-menu img {
+  width: 20px;
+  height: auto;
+  transform: translate(0, 6%);
+}
+
+.nav-link p {
+  text-wrap: nowrap;
 }
 
 .nav-menu .nav-link > img {
@@ -167,11 +178,13 @@ main {
 }
 
 .main-div {
+  z-index: 10;
   margin: 0 5rem;
   padding-top: 4rem;
 }
 
 .form-container {
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   margin: 1em 0;
@@ -781,61 +794,91 @@ input:focus {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-  .form {
-    max-width: 90%;
-    width: 90%;
-    top: 5vh;
+  .first-page {
+    padding: 20px 10px;
+    height: auto;
+    min-height: 70vh;
   }
-
-  .radio-group {
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
+  .first-page h1 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
   }
-
-  .form-row {
-    grid-template-columns: 1fr;
+  .first-page p {
+    font-size: 0.95rem;
   }
-
-  .results-grid {
-    grid-template-columns: 1fr;
+  .main-div {
+    margin: 0 1rem;
+    padding-top: 2rem;
   }
-
-  .tech-grid {
-    grid-template-columns: 1fr;
+  .lower-header {
+    padding: 0.5rem 1rem;
+    height: auto;
   }
-
-  .form-section,
-  .results {
-    padding: 1rem;
-  }
-
-  .casa1 {
-    width: 250px;
-  }
-
-  .sol,
-  .nuvem {
-    width: 15vw;
+  .logo {
+    left: 5%;
+    width: 100px;
   }
 }
 
 @media (max-width: 480px) {
-  .form {
-    max-width: 95%;
-    width: 100%;
-  }
-
-  .radio-group {
-    grid-template-columns: 1fr 1fr;
+  .first-page {
+    padding: 10px 2vw;
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
   }
-
-  .payment-amount {
-    font-size: 1.5rem;
+  .first-page > * {
+    width: 100%;
+    height: 120vh;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .casa1 {
+    z-index: -1;
+    width: 80%;
+    height: auto;
+    right: 10px;
+  }
+  .main-div {
+    margin: 0 0.2rem;
+    padding-top: 1rem;
+  }
+  .lower-header {
+    height: 8vh;
+    padding: 0.3rem 0.5rem;
+    justify-content: flex-end;
+  }
+  .logo {
+    left: 2%;
+    width: 70px;
+  }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .form-container {
+    padding: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+  .container-slider {
+    width: 100%;
+    padding: 0.1rem;
   }
 
-  .result-card .value {
-    font-size: 1.5rem;
+  .logo {
+    position: absolute;
+    left: 15%;
+    margin-bottom: 1rem;
+  }
+  .nav-link {
+    display: none;
   }
 }
 
