@@ -51,13 +51,15 @@ const brazilianCities = [
 ];
 
 // Form elements
-const formSlider = document.getElementById("form-electricity-slider");
-const formInput = document.getElementById("form-electricity-input");
 const cityInput = document.getElementById("city");
 const citySuggestions = document.getElementById("citySuggestions");
 const solarForm = document.getElementById("solarForm");
 const phoneInput = document.getElementById("phone");
-const rangeInput = document.getElementById("form-electricity-slider");
+const mainSlider = document.getElementById("form-electricity-slider1");
+const formSlider = document.getElementById("form-electricity-slider2");
+const mainInput = document.getElementById("form-electricity-input1");
+const formInput = document.getElementById("form-electricity-input2");
+const mainForm = document.getElementById("main-form");
 
 // Results elements
 const slider = document.getElementById("electricity-slider");
@@ -72,6 +74,8 @@ const panelCount = document.getElementById("panel-count");
 const inverterModel = document.getElementById("inverter-model");
 const discount = document.getElementById("discount");
 const installmentAmount = document.getElementById("installment-amount");
+const closeFormButton = document.getElementById("close-form-button");
+const openFormButton = document.getElementById("open-form-button");
 
 // User data storage
 let userData = {};
@@ -89,23 +93,31 @@ phoneInput.addEventListener("input", (e) => {
   e.target.value = formatPhone(e.target.value);
 });
 
-// Form slider sync
-function syncFormInputs(value) {
-  formSlider.value = value;
-  formInput.value = value;
+// --- Begin: Sync all four electricity inputs and sliders ---
+function syncAllElectricityInputs(value) {
+  let v = parseFloat(value);
+  if (isNaN(v)) v = 100;
+  if (v < 100) v = 100;
+  if (v > 1000) v = 1000;
+
+  // Update all four elements if needed
+  if (mainSlider.value != v) mainSlider.value = v;
+  if (formSlider.value != v) formSlider.value = v;
+  if (mainInput.value != v) mainInput.value = v;
+  if (formInput.value != v) formInput.value = v;
+
+  // Optionally update calculations if needed
+  updateCalculations(v);
 }
 
-formSlider.addEventListener("input", (e) => {
-  syncFormInputs(e.target.value);
-});
-
-formInput.addEventListener("input", (e) => {
-  let value = parseFloat(e.target.value);
-  if (value < 100) value = 100;
-  if (value > 1000) value = 1000;
-  if (isNaN(value)) value = 600;
-  e.target.value = value;
-  syncFormInputs(value);
+[mainSlider, formSlider, mainInput, formInput].forEach((el) => {
+  el.addEventListener("input", (e) => {
+    syncAllElectricityInputs(e.target.value);
+    // Update all slider backgrounds after sync
+    [mainSlider, formSlider].forEach((sliderEl) => {
+      updateSliderBackground(sliderEl);
+    });
+  });
 });
 
 // City autocomplete
@@ -320,9 +332,6 @@ window.addEventListener("click", (e) => {
   }
 });
 
-// Initialize with default values
-syncFormInputs(600);
-
 function updateSliderBackground(input) {
   const min = parseInt(input.min);
   const max = parseInt(input.max);
@@ -334,9 +343,21 @@ function updateSliderBackground(input) {
 }
 
 // Inicializa no carregamento
-updateSliderBackground(rangeInput);
+updateSliderBackground(mainSlider);
 
 // Atualiza sempre que mover
-rangeInput.addEventListener("input", () => {
-  updateSliderBackground(rangeInput);
+mainSlider.addEventListener("input", () => {
+  updateSliderBackground(mainSlider);
+});
+
+closeFormButton.addEventListener("click", () => {
+  mainForm.style.display = "none";
+  // Remove blur
+  document.body.classList.remove("blurred-bg");
+});
+
+openFormButton.addEventListener("click", () => {
+  mainForm.style.display = "block";
+  // Blur background
+  document.body.classList.add("blurred-bg");
 });
