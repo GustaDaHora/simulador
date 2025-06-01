@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 
 const HeroSection: React.FC<{ onSimulate?: (bill: number) => void }> = ({
   onSimulate,
@@ -19,15 +20,15 @@ const HeroSection: React.FC<{ onSimulate?: (bill: number) => void }> = ({
 
   // Sync slider and input
   const handleBillChange = (value: number) => {
-    let v = Math.max(100, Math.min(1000, value));
+    const v = Math.max(100, Math.min(1000, value));
     setElectricityBill(v);
     updateSliderBackground(v);
   };
 
-  // Initialize slider background on mount
+  // Initialize slider background on mount and when electricityBill changes
   React.useEffect(() => {
     updateSliderBackground(electricityBill);
-  }, []);
+  }, [electricityBill]);
 
   const handleSimulate = () => {
     if (onSimulate) onSimulate(electricityBill);
@@ -81,10 +82,13 @@ const HeroSection: React.FC<{ onSimulate?: (bill: number) => void }> = ({
           </div>
         </div>
       </div>
-      <img
+      <Image
         className="casa1"
         src="/casa1.png"
         alt="Casa ilustrativa"
+        width={400}
+        height={300}
+        priority
       />
     </section>
   );

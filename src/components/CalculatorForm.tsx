@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 
 const brazilianCities = [
   "São Paulo", "Rio de Janeiro", "Brasília", "Salvador", "Fortaleza", "Belo Horizonte", "Manaus", "Curitiba", "Recife", "Goiânia", "Belém", "Porto Alegre", "Guarulhos", "Campinas", "São Luís", "São Gonçalo", "Maceió", "Duque de Caxias", "Natal", "Cuiabá", "Campo Grande", "Teresina", "São Bernardo do Campo", "Nova Iguaçu", "João Pessoa", "Santo André", "São José dos Campos", "Jaboatão dos Guararapes", "Osasco", "Ribeirão Preto", "Uberlândia", "Sorocaba", "Contagem", "Aracaju", "Feira de Santana", "Joinville", "Juiz de Fora", "Londrina", "Aparecida de Goiânia", "Ananindeua", "Barra do Bugres", "Várzea Grande", "Rondonópolis", "Sinop", "Tangará da Serra", "Cáceres", "Lucas do Rio Verde", "Primavera do Leste",
@@ -58,6 +59,26 @@ function calculateResults({ electricityBill, installationType }: { electricityBi
   };
 }
 
+// Define a type for the results object
+interface SimulationResults {
+  currentBill: number;
+  monthlyPayment: number;
+  monthlySavings: number;
+  totalCost: number;
+  monthlyGeneration: number;
+  systemPower: number;
+  panelCount: number;
+  inverterModel: string;
+  discount: number;
+  installmentAmount: number;
+  fullName: string;
+  city: string;
+  electricityBill: number;
+  installationType: string;
+  email: string;
+  phone: string;
+}
+
 const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> = ({ initialBill = 100, onClose }) => {
   const [electricityBill, setElectricityBill] = useState(initialBill);
   const [installationType, setInstallationType] = useState("residence");
@@ -68,7 +89,7 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [showResults, setShowResults] = useState(false);
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<SimulationResults | null>(null);
   const citySuggestionsRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLInputElement>(null);
 
@@ -109,7 +130,7 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
 
   // Slider/input sync
   const handleBillChange = (value: number) => {
-    let v = Math.max(100, Math.min(1000, value));
+    const v = Math.max(100, Math.min(1000, value));
     setElectricityBill(v);
   };
 
@@ -152,13 +173,13 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
   return (
     <div className="form">
       <button className="close-button" onClick={onClose}>
-        <img alt="Close" src="/cancel.svg"/>
+        <Image alt="Close" src="/cancel.svg" width={24} height={24} />
       </button>
       {/* Header with Images */}
       <div className="image-header">
-        <img className="sol" src="/sun.png" alt="Sol" />
-        <img className="casa2" src="/casa2.png" alt="Casa" />
-        <img className="nuvem" src="/cloud.png" alt="Nuvem" />
+        <Image className="sol" src="/sun.png" alt="Sol" width={80} height={80} />
+        <Image className="casa2" src="/casa2.png" alt="Casa" width={120} height={80} />
+        <Image className="nuvem" src="/cloud.png" alt="Nuvem" width={80} height={50} />
       </div>
       {/* User Form Section or Results Section */}
       {showResults && results ? (
