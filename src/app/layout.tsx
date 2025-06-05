@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.scss";
+import "./styles/globals.scss";
 
 export const metadata: Metadata = {
-  title: "Calculadora de Economia Solar",
-  description: "Simule sua economia com energia solar personalizada.",
+  title: "Website Synergy"
 };
 
 export default function RootLayout({

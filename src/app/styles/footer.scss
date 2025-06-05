@@ -1,0 +1,9 @@
+// ===== FOOTER STYLES =====
+@use 'variables' as *;
+
+footer {
+  background: $primary-color;
+  color: $bg-light;
+  text-align: center;
+  padding: 20px;
+}

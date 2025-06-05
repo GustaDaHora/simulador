@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 
-const HeroSection: React.FC<{ onSimulate?: (bill: number) => void }> = ({
+const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
   onSimulate,
 }) => {
   const [electricityBill, setElectricityBill] = useState(100);
@@ -84,7 +84,7 @@ const HeroSection: React.FC<{ onSimulate?: (bill: number) => void }> = ({
       </div>
       <Image
         className="casa1"
-        src="/casa1.png"
+        src="/simulador/casa1.png"
         alt="Casa ilustrativa"
         width={400}
         height={300}
@@ -94,4 +94,4 @@ const HeroSection: React.FC<{ onSimulate?: (bill: number) => void }> = ({
   );
 };
 
-export default HeroSection;
+export default FirstPage;

@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from "react";
 import Header from "../components/Header";
-import HeroSection from "../components/HeroSection";
-import CalculatorForm from "../components/CalculatorForm";
+import FirstPage from "../components/FirstPage";
+import Form from "../components/Form";
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -22,10 +22,10 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <HeroSection onSimulate={handleSimulate} />
+      <FirstPage onSimulate={handleSimulate} />
       {showForm && (
         <div className="modal-form-bg">
-          <CalculatorForm initialBill={prefillBill ?? undefined} onClose={handleCloseForm} />
+          <Form initialBill={prefillBill ?? undefined} onClose={handleCloseForm} />
         </div>
       )}
       <Footer />

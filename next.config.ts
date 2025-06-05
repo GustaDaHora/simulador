@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 const repoName = "simulador";
 
 const nextConfig: NextConfig = {
-  output: "export",
   basePath: `/${repoName}`,
   assetPrefix: `/${repoName}/`,
 };

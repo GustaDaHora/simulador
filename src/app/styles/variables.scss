@@ -1,0 +1,61 @@
+// ===== VARIABLES =====
+$primary-color: #ffca43;
+$primary-dark: #d6a321;
+$secondary-color: #667eea;
+$success-color: #28a745;
+$success-dark: #20803d;
+$error-color: #e74c3c;
+$text-dark: #333;
+$text-medium: #555;
+$text-light: #666;
+$text-muted: #adadad;
+$bg-light: #f5f5f5;
+$bg-white: #fff;
+$bg-dark: #202020;
+$green-primary: #4caf50;
+$green-secondary: #45a049;
+$accent-red: #f5576c;
+$border-light: #ddd;
+$border-medium: #ccc;
+
+// Font family
+$font-family: "Golos Text", sans-serif;
+
+// Breakpoints
+$mobile: 480px;
+$tablet: 768px;
+
+// ===== MIXINS =====
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button-hover($translateY: -2px) {
+  transform: translateY($translateY);
+  transition: all 0.3s ease;
+}
+
+@mixin gradient-background($color1, $color2, $angle: 135deg) {
+  background: linear-gradient($angle, $color1 0%, $color2 100%);
+}
+
+@mixin card-shadow($opacity: 0.08) {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, $opacity);
+}
+
+@mixin input-focus($color: $primary-color) {
+  border-color: $color;
+  outline: none;
+}
+
+// ===== BUTTON BASE STYLES =====
+%button-base {
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+

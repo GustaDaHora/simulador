@@ -1,9 +1,56 @@
-"use client"
+"use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 
 const brazilianCities = [
-  "São Paulo", "Rio de Janeiro", "Brasília", "Salvador", "Fortaleza", "Belo Horizonte", "Manaus", "Curitiba", "Recife", "Goiânia", "Belém", "Porto Alegre", "Guarulhos", "Campinas", "São Luís", "São Gonçalo", "Maceió", "Duque de Caxias", "Natal", "Cuiabá", "Campo Grande", "Teresina", "São Bernardo do Campo", "Nova Iguaçu", "João Pessoa", "Santo André", "São José dos Campos", "Jaboatão dos Guararapes", "Osasco", "Ribeirão Preto", "Uberlândia", "Sorocaba", "Contagem", "Aracaju", "Feira de Santana", "Joinville", "Juiz de Fora", "Londrina", "Aparecida de Goiânia", "Ananindeua", "Barra do Bugres", "Várzea Grande", "Rondonópolis", "Sinop", "Tangará da Serra", "Cáceres", "Lucas do Rio Verde", "Primavera do Leste",
+  "São Paulo",
+  "Rio de Janeiro",
+  "Brasília",
+  "Salvador",
+  "Fortaleza",
+  "Belo Horizonte",
+  "Manaus",
+  "Curitiba",
+  "Recife",
+  "Goiânia",
+  "Belém",
+  "Porto Alegre",
+  "Guarulhos",
+  "Campinas",
+  "São Luís",
+  "São Gonçalo",
+  "Maceió",
+  "Duque de Caxias",
+  "Natal",
+  "Cuiabá",
+  "Campo Grande",
+  "Teresina",
+  "São Bernardo do Campo",
+  "Nova Iguaçu",
+  "João Pessoa",
+  "Santo André",
+  "São José dos Campos",
+  "Jaboatão dos Guararapes",
+  "Osasco",
+  "Ribeirão Preto",
+  "Uberlândia",
+  "Sorocaba",
+  "Contagem",
+  "Aracaju",
+  "Feira de Santana",
+  "Joinville",
+  "Juiz de Fora",
+  "Londrina",
+  "Aparecida de Goiânia",
+  "Ananindeua",
+  "Barra do Bugres",
+  "Várzea Grande",
+  "Rondonópolis",
+  "Sinop",
+  "Tangará da Serra",
+  "Cáceres",
+  "Lucas do Rio Verde",
+  "Primavera do Leste",
 ];
 
 function formatPhone(value: string) {
@@ -14,7 +61,13 @@ function formatPhone(value: string) {
   return numbers.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
 }
 
-function calculateResults({ electricityBill, installationType }: { electricityBill: number; installationType: string }) {
+function calculateResults({
+  electricityBill,
+  installationType,
+}: {
+  electricityBill: number;
+  installationType: string;
+}) {
   let multiplier = 1;
   switch (installationType) {
     case "business":
@@ -33,7 +86,7 @@ function calculateResults({ electricityBill, installationType }: { electricityBi
   const kwhPerMonth = (bill / 0.85) * multiplier;
   const systemPowerKw = Math.ceil(kwhPerMonth / 130);
   const panelCountCalc = Math.ceil(systemPowerKw / 0.55);
-  const costPerKw = 4500 * multiplier;
+  const costPerKw = 2000 * multiplier;
   const totalSystemCost = systemPowerKw * costPerKw;
   const discountPercent = 15;
   const finalCost = totalSystemCost * (1 - discountPercent / 100);
@@ -79,7 +132,10 @@ interface SimulationResults {
   phone: string;
 }
 
-const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> = ({ initialBill = 100, onClose }) => {
+const Form: React.FC<{ initialBill?: number; onClose?: () => void }> = ({
+  initialBill = 100,
+  onClose,
+}) => {
   const [electricityBill, setElectricityBill] = useState(initialBill);
   const [installationType, setInstallationType] = useState("residence");
   const [city, setCity] = useState("");
@@ -98,7 +154,9 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
     const query = e.target.value.toLowerCase();
     setCity(e.target.value);
     if (query.length > 1) {
-      const suggestions = brazilianCities.filter((c) => c.toLowerCase().includes(query)).slice(0, 5);
+      const suggestions = brazilianCities
+        .filter((c) => c.toLowerCase().includes(query))
+        .slice(0, 5);
       setCitySuggestions(suggestions);
     } else {
       setCitySuggestions([]);
@@ -153,9 +211,11 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
     const newErrors: { [key: string]: string } = {};
     if (!fullName.trim()) newErrors["fullName"] = "Este campo é obrigatório";
     if (!email.trim()) newErrors["email"] = "Este campo é obrigatório";
-    else if (!/^\S+@\S+\.\S+$/.test(email)) newErrors["email"] = "Por favor, insira um e-mail válido";
+    else if (!/^\S+@\S+\.\S+$/.test(email))
+      newErrors["email"] = "Por favor, insira um e-mail válido";
     if (!phone.trim()) newErrors["phone"] = "Este campo é obrigatório";
-    else if (phone.replace(/\D/g, "").length < 10) newErrors["phone"] = "Por favor, insira um telefone válido";
+    else if (phone.replace(/\D/g, "").length < 10)
+      newErrors["phone"] = "Por favor, insira um telefone válido";
     if (!city.trim()) newErrors["city"] = "Este campo é obrigatório";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -165,21 +225,49 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    const userData = { electricityBill, installationType, city, fullName, email, phone };
-    setResults({ ...userData, ...calculateResults({ electricityBill, installationType }) });
+    const userData = {
+      electricityBill,
+      installationType,
+      city,
+      fullName,
+      email,
+      phone,
+    };
+    setResults({
+      ...userData,
+      ...calculateResults({ electricityBill, installationType }),
+    });
     setShowResults(true);
   };
 
   return (
     <div className="form">
       <button className="close-button" onClick={onClose}>
-        <Image alt="Close" src="/cancel.svg" width={24} height={24} />
+        <Image alt="Close" src="/simulador/cancel.svg" width={24} height={24} />
       </button>
       {/* Header with Images */}
       <div className="image-header">
-        <Image className="sol" src="/sun.png" alt="Sol" width={80} height={80} />
-        <Image className="casa2" src="/casa2.png" alt="Casa" width={120} height={80} />
-        <Image className="nuvem" src="/cloud.png" alt="Nuvem" width={80} height={50} />
+        <Image
+          className="sol"
+          src="/simulador/sun.png"
+          alt="Sol"
+          width={80}
+          height={80}
+        />
+        <Image
+          className="casa2"
+          src="/simulador/casa2.png"
+          alt="Casa"
+          width={120}
+          height={80}
+        />
+        <Image
+          className="nuvem"
+          src="/simulador/cloud.png"
+          alt="Nuvem"
+          width={80}
+          height={50}
+        />
       </div>
       {/* User Form Section or Results Section */}
       {showResults && results ? (
@@ -196,36 +284,31 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
               </span>{" "}
               em <span>{results.city}</span>
             </p>
-            <button className="btn-edit-form" onClick={() => setShowResults(false)}>
-              ✏️ Editar Informações
-            </button>
           </div>
-          <button className="btn-consultant">Falar com um Consultor</button>
-          <h2>Seus Resultados</h2>
           {/* Results Grid */}
           <div className="results-grid">
-            <div className="result-card">
+            <div className="result-card red">
               <h3>Conta de Luz Atual</h3>
               <div className="value">
                 R$ {results.electricityBill.toFixed(2).replace(".", ",")}
               </div>
               <div className="description">Valor mensal médio</div>
             </div>
-            <div className="result-card">
+            <div className="result-card blue">
               <h3>Parcela Mensal do Sistema</h3>
               <div className="value">
                 R$ {results.monthlyPayment.toFixed(2).replace(".", ",")}
               </div>
               <div className="description">Financiamento solar</div>
             </div>
-            <div className="result-card">
+            <div className="result-card green">
               <h3>Economia Mensal</h3>
               <div className="value">
                 R$ {results.monthlySavings.toFixed(2).replace(".", ",")}
               </div>
               <div className="description">Sua economia desde o 1º mês</div>
             </div>
-            <div className="result-card">
+            <div className="result-card yellow">
               <h3>Custo Total do Projeto</h3>
               <div className="value">
                 R$ {results.totalCost.toFixed(2).replace(".", ",")}
@@ -261,9 +344,7 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
               </div>
               <div className="tech-item">
                 <span className="tech-label">Desconto Aplicado:</span>
-                <span className="tech-value">
-                  {results.discount}% OFF
-                </span>
+                <span className="tech-value">{results.discount}% OFF</span>
               </div>
             </div>
           </div>
@@ -272,12 +353,20 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
             <h3>Opções de Pagamento</h3>
             <div className="payment-highlight">
               <div className="payment-amount">
-                60x de R$ {results.installmentAmount.toFixed(2).replace(".", ",")}
+                60x de R${" "}
+                {results.installmentAmount.toFixed(2).replace(".", ",")}
               </div>
               <div className="payment-terms">com 120 dias de carência</div>
               <button className="discount-badge">🎉 Promoção Especial!</button>
             </div>
           </div>
+          <button className="btn-consultant">Falar com um Consultor</button>
+          <button
+            className="btn-edit-form"
+            onClick={() => setShowResults(false)}
+          >
+            ✏️ Editar Informações
+          </button>
         </div>
       ) : (
         <div className="form-section">
@@ -285,10 +374,16 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
           <div className="form-instructions">
             <h2>Descubra Seu Potencial de Economia</h2>
             <p>
-              Complete o formulário abaixo para descobrir quanto você pode economizar com energia solar personalizada para seu perfil.
+              Complete o formulário abaixo para descobrir quanto você pode
+              economizar com energia solar personalizada para seu perfil.
             </p>
           </div>
-          <form className="solar-form" id="solarForm" onSubmit={handleSubmit} autoComplete="off">
+          <form
+            className="solar-form"
+            id="solarForm"
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
             {/* Electricity Bill Input */}
             <div className="form-group">
               <label htmlFor="form-electricity-bill">
@@ -304,7 +399,7 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
                   step={10}
                   value={electricityBill}
                   ref={sliderRef}
-                  onChange={e => handleBillChange(Number(e.target.value))}
+                  onChange={(e) => handleBillChange(Number(e.target.value))}
                 />
               </div>
               <div className="manual-input">
@@ -316,7 +411,7 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
                   max={1000}
                   step={10}
                   value={electricityBill}
-                  onChange={e => handleBillChange(Number(e.target.value))}
+                  onChange={(e) => handleBillChange(Number(e.target.value))}
                   required
                   autoComplete="off"
                 />
@@ -329,21 +424,21 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
                 {[
                   {
                     label: "Residência",
-                    value: "residence"
+                    value: "residence",
                   },
                   {
                     label: "Comércio",
-                    value: "business"
+                    value: "business",
                   },
                   {
                     label: "Indústria",
-                    value: "industry"
+                    value: "industry",
                   },
                   {
                     label: "Área Rural",
-                    value: "rural"
-                  }
-                ].map(opt => (
+                    value: "rural",
+                  },
+                ].map((opt) => (
                   <label className="radio-option" key={opt.value}>
                     <input
                       type="radio"
@@ -358,7 +453,10 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
               </div>
             </div>
             {/* City Input */}
-            <div className={`form-group${errors.city ? " error" : ""}`} ref={citySuggestionsRef}>
+            <div
+              className={`form-group${errors.city ? " error" : ""}`}
+              ref={citySuggestionsRef}
+            >
               <input
                 type="text"
                 id="city"
@@ -372,13 +470,19 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
               {citySuggestions.length > 0 && (
                 <div className="city-suggestions">
                   {citySuggestions.map((c) => (
-                    <div key={c} className="city-suggestion" onClick={() => selectCity(c)}>
+                    <div
+                      key={c}
+                      className="city-suggestion"
+                      onClick={() => selectCity(c)}
+                    >
                       {c}
                     </div>
                   ))}
                 </div>
               )}
-              {errors.city && <div className="error-message">{errors.city}</div>}
+              {errors.city && (
+                <div className="error-message">{errors.city}</div>
+              )}
             </div>
             {/* Personal Information */}
             <div className={`form-group${errors.fullName ? " error" : ""}`}>
@@ -388,10 +492,12 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
                 name="full-name"
                 placeholder="Nome e Sobrenome"
                 value={fullName}
-                onChange={e => setFullName(e.target.value)}
+                onChange={(e) => setFullName(e.target.value)}
                 required
               />
-              {errors.fullName && <div className="error-message">{errors.fullName}</div>}
+              {errors.fullName && (
+                <div className="error-message">{errors.fullName}</div>
+              )}
             </div>
             <div className="form-row">
               <div className={`form-group${errors.email ? " error" : ""}`}>
@@ -401,10 +507,12 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
                   name="email"
                   placeholder="Email"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                {errors.email && <div className="error-message">{errors.email}</div>}
+                {errors.email && (
+                  <div className="error-message">{errors.email}</div>
+                )}
               </div>
               <div className={`form-group${errors.phone ? " error" : ""}`}>
                 <input
@@ -416,7 +524,9 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
                   onChange={handlePhoneInput}
                   required
                 />
-                {errors.phone && <div className="error-message">{errors.phone}</div>}
+                {errors.phone && (
+                  <div className="error-message">{errors.phone}</div>
+                )}
               </div>
             </div>
             <button type="submit" className="btn-view-results">
@@ -430,4 +540,4 @@ const CalculatorForm: React.FC<{ initialBill?: number; onClose?: () => void }> =
   );
 };
 
-export default CalculatorForm;
+export default Form;

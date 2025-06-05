@@ -1,0 +1,563 @@
+// ===== FORM STYLES =====
+@use "variables" as *;
+
+// Main Form Container
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 8vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  max-width: 48%;
+  max-height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.image-header {
+  width: 100%;
+  background-color: $secondary-color;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px 10px 0 0;
+  padding: 4rem 1rem 0 1rem;
+  position: relative;
+  flex-shrink: 0;
+}
+
+// Form Sections
+.form-section {
+  width: 100%;
+  background: $bg-light;
+  border-radius: 0 0 10px 10px;
+  @include card-shadow();
+  padding: 1rem 2rem;
+  overflow-y: visible;
+}
+
+.form-instructions {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    color: $text-dark;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p {
+    color: $text-light;
+    font-size: 0.9rem;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+// Form Elements
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: $text-medium;
+    font-size: 0.9rem;
+  }
+
+  &.error input {
+    border-color: $error-color;
+    background: #ffeaea;
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+// Input Styles
+%input-base {
+  width: 100%;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  border: 1px solid $border-medium;
+  border-radius: 30px;
+  background: $bg-white;
+  transition: border-color 0.2s;
+
+  &:focus {
+    @include input-focus();
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"] {
+  @extend %input-base;
+}
+
+.error-message {
+  color: $error-color;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  display: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 20;
+
+  img {
+    color: white;
+  }
+}
+
+// Slider Styles
+.container-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.slider {
+  width: 95%;
+  flex: 1;
+  max-height: 1vh;
+  height: 1vh;
+  border-radius: 5px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  accent-color: $success-color;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $text-dark;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+  }
+
+  &::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $text-dark;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.manual-input {
+  max-width: 100%;
+  width: 100%;
+  @include flex-center;
+  gap: 10px;
+  padding: 0 15px;
+  border: 2px solid $border-light;
+  border-radius: 50px;
+  background: $bg-white;
+  transition: border-color 0.3s ease;
+
+  span {
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  input {
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+  }
+
+  &:focus-within {
+    border-color: $secondary-color;
+  }
+}
+
+// Radio Button Styles
+.radio-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.radio-option {
+  @include flex-center;
+  padding: 0.7em 0.5em;
+  border: 1px solid $text-muted;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: $bg-white;
+  max-height: 7vh;
+
+  &:hover {
+    border-color: $secondary-color;
+    background: #f8f9ff;
+  }
+
+  input[type="radio"] {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    accent-color: $secondary-color;
+  }
+}
+
+.radio-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+// City Suggestions
+.city-suggestions {
+  position: absolute;
+  background: $bg-white;
+  border: 1px solid $border-light;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 5px;
+}
+
+.city-suggestion {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #f8f9ff;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// Form Buttons
+.btn-view-results {
+  @extend %button-base;
+  @include gradient-background($success-color, $success-dark);
+  color: $bg-light;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  font-size: 1rem;
+  border-radius: 30px;
+  @include flex-center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+
+  &:hover {
+    @include button-hover();
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+  }
+}
+
+.btn-consultant {
+  @extend %button-base;
+  @include gradient-background($green-primary, $green-secondary);
+  color: $bg-white;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+  margin: 2rem 0;
+
+  &:hover {
+    @include button-hover();
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+  }
+}
+
+.btn-edit-form {
+  background: #f8f9ff;
+  color: $secondary-color;
+  padding: 8px 15px;
+  border: 1px solid $secondary-color;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $secondary-color;
+    color: $bg-white;
+  }
+}
+
+// Results Section
+.results {
+  max-width: 100%;
+  width: 100%;
+  background: $bg-light;
+  border-radius: 0 0 10px 10px;
+  @include card-shadow();
+  padding: 1rem 2rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+.results-header {
+  text-align: center;
+
+  h2 {
+    color: $text-dark;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: $text-light;
+    margin-bottom: 15px;
+  }
+}
+
+// Results Grid
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33vh, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.result-card {
+  padding: 1.2rem 0.1rem;
+  border-radius: 12px;
+  border-left: 4px solid $secondary-color;
+  transition: transform 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  h3 {
+    color: $text-dark;
+    text-wrap: nowrap;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    color: $text-light;
+    font-size: 0.9rem;
+  }
+}
+
+.blue {
+  @include gradient-background(#f8f9ff, #e6f3ff);
+  color: #566069;
+}
+.red {
+  @include gradient-background(#fff5f5, #ffe6e6);
+  color: #574747;
+}
+.green {
+  @include gradient-background(#f0fff4, #e6ffe6);
+  color: #555f55;
+}
+.yellow {
+  @include gradient-background(#fffbe6, #fff3cc);
+  color: rgb(90, 86, 71)
+}
+
+// Technical Details
+.technical-details {
+  @include gradient-background(#fff5f5, #ffe6e6);
+  padding: 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid $accent-red;
+  margin-bottom: 2rem;
+
+  h3 {
+    color: $text-dark;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: "🔧";
+      margin-right: 10px;
+    }
+  }
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.tech-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.tech-label {
+  font-weight: 600;
+  color: $text-medium;
+}
+
+.tech-value {
+  color: $accent-red;
+  font-weight: 700;
+}
+
+// Payment Options
+.payment-options {
+  @include gradient-background(#f0fff4, #e6ffe6);
+  padding: 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid $green-primary;
+
+  h3 {
+    color: $text-dark;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: "💳";
+      margin-right: 10px;
+    }
+  }
+}
+
+.payment-highlight {
+  background: $bg-white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.payment-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $green-primary;
+  margin-bottom: 0.5rem;
+}
+
+.payment-terms {
+  color: $text-light;
+  margin-bottom: 1rem;
+}
+
+.discount-badge {
+  @include gradient-background(#ff6b6b, #ee5a24);
+  color: $bg-white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+  transition: all 0.3s ease;
+
+  &:hover {
+    @include gradient-background(#ee5a24, #ff6b6b);
+    transform: scale(1.05);
+  }
+}
+
+// Blurred Background for Form
+.blurred-bg {
+  #main-content,
+  header,
+  footer {
+    filter: blur(5px) !important;
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+#main-form {
+  z-index: 1001;
+}
+
+@media (max-width: $tablet) {
+  .form {
+    max-width: 90%;
+    padding: 1rem;
+    top: 5vh;
+  }
+
+  .image-header {
+    padding: 2rem 1rem;
+  }
+
+  .form-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: $mobile) {
+  .form {
+    max-width: 95%;
+    width: 95%;
+    padding: 0.5rem;
+    top: 4vh;
+  }
+
+  .image-header {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .form-section {
+    padding: 1rem;
+  }
+
+  .slider-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
