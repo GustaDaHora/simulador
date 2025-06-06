@@ -15,7 +15,7 @@ header {
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: 5rem;
+  gap: 3rem;
   padding: 10px 40px;
 }
 
@@ -133,12 +133,13 @@ header {
 // Header Responsive Design
 @media (max-width: $mobile) {
   .upper-header {
+    gap: 1rem;
     justify-content: center;
     width: 100%;
   }
   .lower-header {
     height: 8vh;
-    padding: 0 2rem;
+    padding: 0.5rem 2rem;
     justify-content: flex-end;
   }
 
@@ -147,7 +148,6 @@ header {
     width: 70px;
     position: absolute;
     left: 15%;
-    margin-bottom: 1rem;
   }
 
   .nav-menu {

@@ -134,33 +134,6 @@ main {
   pointer-events: none;
 }
 
-.sol {
-  width: 10vw;
-  max-width: 15vh;
-  height: auto;
-  position: absolute;
-  top: 2%;
-  left: 20%;
-  pointer-events: none;
-}
-
-.nuvem {
-  width: 10vw;
-  max-width: 15vh;
-  height: auto;
-  position: absolute;
-  top: 5vh;
-  right: 10%;
-  pointer-events: none;
-}
-
-.casa2 {
-  width: 30%;
-  height: auto;
-  pointer-events: none;
-  z-index: 1;
-}
-
 // Button and Input Container Shared Styles
 %shared-size {
   width: 250px; // Increased width for desktop
@@ -226,11 +199,20 @@ main {
 
 // First Page Responsive Design
 @media (max-width: $mobile) {
+  .text-container {
+    h1 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 0.8rem;
+    }
+  }
   .first-page {
     padding: 1rem;
-    min-height: 40vh;
+    height: 100vh;
     @include flex-center;
     flex-direction: column;
+    justify-content: flex-start;
     text-align: center;
 
     & > * {
