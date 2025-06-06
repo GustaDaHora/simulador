@@ -46,12 +46,12 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
           </p>
         </div>
         <div className="form-container">
-          <div className="container-slider">
+          <div className="main-slider-container">
             <p>Gasto médio mensal de energia</p>
             <input
               type="range"
               id="form-electricity-slider2"
-              className="slider"
+              className="main-slider"
               min={100}
               max={1000}
               step={10}
@@ -61,7 +61,7 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
             />
           </div>
           <div className="input-group">
-            <div className="manual-input">
+            <div className="main-manual-input">
               <span>R$</span>
               <input
                 type="number"
@@ -73,7 +73,7 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
                 onChange={(e) => handleBillChange(Number(e.target.value))}
                 required
                 autoComplete="off"
-                className="manual-input-field"
+                className="main-manual-input-field"
               />
             </div>
             <button className="btn-open-form" onClick={handleSimulate}>

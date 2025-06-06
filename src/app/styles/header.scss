@@ -131,19 +131,11 @@ header {
 }
 
 // Header Responsive Design
-@media (max-width: $tablet) {
-  .lower-header {
-    padding: 0.5rem 1rem;
-    height: auto;
-  }
-
-  .logo {
-    left: 5%;
-    max-width: 40vw;
-  }
-}
-
 @media (max-width: $mobile) {
+  .upper-header {
+    justify-content: center;
+    width: 100%;
+  }
   .lower-header {
     height: 8vh;
     padding: 0 2rem;

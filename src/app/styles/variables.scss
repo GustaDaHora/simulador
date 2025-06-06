@@ -22,8 +22,7 @@ $border-medium: #ccc;
 $font-family: "Golos Text", sans-serif;
 
 // Breakpoints
-$mobile: 480px;
-$tablet: 768px;
+$mobile: 900px;
 
 // ===== MIXINS =====
 @mixin flex-center {
@@ -59,3 +58,18 @@ $tablet: 768px;
   transition: all 0.3s ease;
 }
 
+// Input Styles
+%input-base {
+  width: 100%;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border: 1px solid $border-medium;
+  border-radius: 30px;
+  background: $bg-white;
+  transition: border-color 0.2s;
+
+  &:focus {
+    @include input-focus();
+  }
+}
