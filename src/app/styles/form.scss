@@ -12,9 +12,10 @@
   transform: translateX(-50%);
   z-index: 10;
   max-width: 48%;
-  max-height: 85vh;
+  max-height: 90vh;
   overflow-y: auto;
   overflow-x: hidden;
+  border-radius: 10px;
 }
 
 .image-header {
@@ -106,7 +107,6 @@
   grid-template-columns: 1fr 1fr;
 }
 
-
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -161,7 +161,7 @@ input[type="number"] {
     width: 100%;
     font-size: 0.9rem;
     color: $text-medium;
-    
+
     &:focus {
       outline: none;
     }
@@ -183,7 +183,8 @@ input[type="number"] {
 }
 
 .slider {
-  width: 95%;
+  max-width: 100%;
+  width: 100%;
   flex: 1;
   max-height: 0.8vh;
   height: 0.8vh;
@@ -349,7 +350,7 @@ input[type="number"] {
   background: $bg-light;
   border-radius: 0 0 10px 10px;
   @include card-shadow();
-  padding: 1rem 2rem;
+  padding: 1rem;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -430,7 +431,7 @@ input[type="number"] {
 }
 .yellow {
   @include gradient-background(#fffbe6, #fff3cc);
-  color: rgb(90, 86, 71)
+  color: rgb(90, 86, 71);
 }
 
 // Technical Details
@@ -559,14 +560,43 @@ input[type="number"] {
 
 @media (max-width: $mobile) {
   .form {
-    max-width: 95%;
-    width: 95%;
+    max-width: 100%;
+    width: 98%;
     padding: 0.5rem;
     top: 4vh;
   }
 
+  .form-instructions, .results-header {
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      padding: 0;
+      max-width: 100%;
+    }
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
   .image-header {
-    padding: 1.5rem 0.5rem 0 1.5rem;
+    .sol {
+      width: 15vw;
+      max-width: 20vh;
+      top: 15%;
+      left: 15%;
+    }
+    .nuvem {
+      width: 20vw;
+      max-width: 20vh;
+      top: 20%;
+      right: 5%;
+    }
+    .casa2 {
+      width: 40%;
+      height: auto;
+      top: 10%;
+      left: 25%;
+    }
   }
 
   .form-section {
@@ -586,5 +616,13 @@ input[type="number"] {
   .radio-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"] {
+    font-size: 0.9rem;
+    padding: 10px;
   }
 }

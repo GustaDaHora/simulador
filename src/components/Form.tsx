@@ -243,7 +243,7 @@ const Form: React.FC<{ initialBill?: number; onClose?: () => void }> = ({
   return (
     <div className="form">
       <button className="close-button" onClick={onClose}>
-        <Image alt="Close" src="/simulador/cancel.svg" width={24} height={24} />
+        <Image alt="Close" src="/simulador/cancel.svg" width={40} height={40} />
       </button>
       {/* Header with Images */}
       <div className="image-header">

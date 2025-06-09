@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import FirstPage from "../components/FirstPage";
 import Form from "../components/Form";
 import Footer from "../components/Footer";
+import SecondPage from "@/components/SecondPage";
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -22,12 +23,13 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <FirstPage onSimulate={handleSimulate} />
       {showForm && (
         <div className="modal-form-bg">
           <Form initialBill={prefillBill ?? undefined} onClose={handleCloseForm} />
         </div>
       )}
+      <FirstPage onSimulate={handleSimulate} />
+      <SecondPage />
       <Footer />
     </div>
   );

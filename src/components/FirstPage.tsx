@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 
@@ -6,7 +6,9 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
   onSimulate,
 }) => {
   const [electricityBill, setElectricityBill] = useState(100);
+  const [hideBg, setHideBg] = useState(false);
   const sliderRef = useRef<HTMLInputElement>(null);
+  const lastY = useRef<number | null>(null);
 
   // Slider color animation
   const updateSliderBackground = (val: number) => {
@@ -34,8 +36,69 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
     if (onSimulate) onSimulate(electricityBill);
   };
 
+  // Handles mouse movement to detect direction
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (lastY.current !== null) {
+      if (e.clientY < lastY.current) {
+        setHideBg(false); // Mouse moving up: now show elements
+      } else if (e.clientY > lastY.current) {
+        setHideBg(true); // Mouse moving down: now hide elements
+      }
+    }
+    lastY.current = e.clientY;
+  };
+
+  // Trigger animation on mouse enter as well
+  const handleMouseEnter = (e: React.MouseEvent) => {
+    setHideBg(true); // Now hide elements on enter
+    lastY.current = e.clientY;
+  };
+
+  // Reset lastY when mouse leaves
+  const handleMouseLeave = () => {
+    setHideBg(false); // Now show elements on leave
+    lastY.current = null;
+  };
+
   return (
-    <section className="first-page">
+    <section
+      className="first-page"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+    >
+      <Image
+        className={`circle${hideBg ? ' hide-bg-anim' : ''}`}
+        src="/simulador/circle.svg"
+        alt="Círculo ilustrativo"
+        width={600}
+        height={600}
+        priority
+      />
+      <Image
+        className="casa1"
+        src="/simulador/casa1.png"
+        alt="Casa ilustrativa"
+        width={400}
+        height={300}
+        priority
+      />
+      <Image
+        className={`cloud2${hideBg ? ' hide-bg-anim' : ''}`}
+        src="/simulador/cloud2.svg"
+        alt="Nuvem ilustrativa"
+        width={90}
+        height={60}
+        priority
+      />
+      <Image
+        className={`cloud3${hideBg ? ' hide-bg-anim' : ''}`}
+        src="/simulador/cloud3.svg"
+        alt="Nuvem ilustrativa"
+        width={90}
+        height={60}
+        priority
+      />
       <div className="main-div">
         <div className="text-container">
           <p>Synergy</p>
@@ -82,14 +145,6 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
           </div>
         </div>
       </div>
-      <Image
-        className="casa1"
-        src="/simulador/casa1.png"
-        alt="Casa ilustrativa"
-        width={400}
-        height={300}
-        priority
-      />
     </section>
   );
 };

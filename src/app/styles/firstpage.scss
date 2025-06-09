@@ -31,7 +31,7 @@ main {
 
 // Form Container on First Page
 .form-container {
-  z-index: 10;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   margin: 1em 0;
@@ -124,6 +124,18 @@ main {
 }
 
 // Background Images
+.circle {
+  position: absolute;
+  bottom: -39vh;
+  right: -20vh;
+  z-index: -1;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
 .casa1 {
   position: absolute;
   bottom: 0;
@@ -133,6 +145,20 @@ main {
   z-index: 0;
   pointer-events: none;
 }
+
+.cloud2 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+}
+
+.cloud3 {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  z-index: -1;
+} 
 
 // Button and Input Container Shared Styles
 %shared-size {
@@ -202,6 +228,7 @@ main {
   .text-container {
     h1 {
       font-size: 1.5rem;
+      margin-bottom: 7vh;
     }
     p {
       font-size: 0.8rem;
@@ -209,7 +236,7 @@ main {
   }
   .first-page {
     padding: 1rem;
-    height: 100vh;
+    height: 90vh;
     @include flex-center;
     flex-direction: column;
     justify-content: flex-start;
@@ -231,7 +258,7 @@ main {
 
   .casa1 {
     z-index: -1;
-    width: 80%;
+    width: 70%;
     height: auto;
     right: 10px;
   }
@@ -287,4 +314,55 @@ main {
     font-size: 0.7rem;
     padding: 0 10px;
   }
+
+  .circle,
+  .cloud2,
+  .cloud3 {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: none;
+  }
+  .circle {
+    width: 250px !important;
+    height: 250px !important;
+    right: -1.5vh !important;
+    bottom: -10vh !important;
+  }
+  .cloud2 {
+    width: 50px !important;
+    height: 30px !important;
+    left: 70% !important;
+    top: 2vh !important;
+  }
+  .cloud3 {
+    width: 70px !important;
+    height: 40px !important;
+    left: 10% !important;
+    top: 15vh !important;
+  }
+}
+
+// Hide Background Animation Class
+.hide-bg-anim {
+  opacity: 0.7; // Slight fade, adjust as needed
+  pointer-events: none;
+  transition: opacity 0.5s, transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.circle,
+.cloud2,
+.cloud3 {
+  transition: opacity 0.5s, transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.circle.hide-bg-anim {
+  transform: translateX(70px);
+}
+
+.cloud2.hide-bg-anim {
+  transform: translateX(60px);
+}
+
+.cloud3.hide-bg-anim {
+  transform: translateX(-150px);
 }

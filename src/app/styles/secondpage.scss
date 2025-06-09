@@ -1,0 +1,22 @@
+// ===== FIRST PAGE STYLES =====
+@use "variables" as *;
+
+// Main Content Layout
+.second-page {
+  @include gradient-background($primary-color, $primary-dark, 180deg);
+  position: relative;
+  padding: 6rem 8rem;
+  height: 70vh;
+  z-index: 1;
+
+  h1 {
+    color: $bg-light;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: $bg-light;
+    font-size: 1rem;
+  }
+}
