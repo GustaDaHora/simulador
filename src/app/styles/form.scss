@@ -7,15 +7,17 @@
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 8vh;
+  top: 5vh;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
-  max-width: 48%;
+  z-index: 11;
+  width: 52%;
   max-height: 90vh;
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 10px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .image-header {
@@ -57,8 +59,8 @@
 // Form Sections
 .form-section {
   width: 100%;
-  background: $bg-light;
-  border-radius: 0 0 10px 10px;
+  background: transparent;
+  border-radius: 0;
   @include card-shadow();
   padding: 1rem 2rem;
   overflow-y: visible;
@@ -317,9 +319,9 @@ input[type="number"] {
   @include gradient-background($green-primary, $green-secondary);
   color: $bg-white;
   padding: 15px 30px;
+  margin: 1rem;
   font-size: 1.1rem;
   box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-  margin: 2rem 0;
 
   &:hover {
     @include button-hover();
@@ -331,6 +333,7 @@ input[type="number"] {
   background: #f8f9ff;
   color: $secondary-color;
   padding: 8px 15px;
+  margin: 1rem;
   border: 1px solid $secondary-color;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -345,12 +348,12 @@ input[type="number"] {
 
 // Results Section
 .results {
+  @include card-shadow();
+  background-color: #f8f6f1;
   max-width: 100%;
   width: 100%;
-  background: $bg-light;
-  border-radius: 0 0 10px 10px;
-  @include card-shadow();
-  padding: 1rem;
+  background: transparent;
+  border-radius: 0;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -364,6 +367,8 @@ input[type="number"] {
 
 .results-header {
   text-align: center;
+  padding: 1rem;
+  background-color: #f8f6f1;
 
   h2 {
     color: $text-dark;
@@ -373,75 +378,74 @@ input[type="number"] {
 
   p {
     color: $text-light;
-    margin-bottom: 15px;
   }
 }
 
 // Results Grid
 .results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(33vh, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  display: flex;
+  background-color: #f8f6f1;
 }
 
 .result-card {
-  padding: 1.2rem 0.1rem;
-  border-radius: 12px;
-  border-left: 4px solid $secondary-color;
+  padding: 2rem 4rem;
   transition: transform 0.3s ease;
   text-align: center;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
   &:hover {
     transform: translateY(-2px);
   }
 
   h3 {
-    color: $text-dark;
     text-wrap: nowrap;
-    margin-bottom: 0.5rem;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-weight: 900;
   }
 
   .value {
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
   }
 
   .description {
-    color: $text-light;
     font-size: 0.9rem;
   }
 }
 
-.blue {
-  @include gradient-background(#f8f9ff, #e6f3ff);
-  color: #566069;
-}
 .red {
-  @include gradient-background(#fff5f5, #ffe6e6);
-  color: #574747;
+  background-color: #ff6464;
+  color: black;
+  border-radius: 12px 0 0 12px;
 }
 .green {
-  @include gradient-background(#f0fff4, #e6ffe6);
-  color: #555f55;
+  background-color: #01b040;
+  color: white;
+  border-radius: 0 12px 12px 0;
 }
-.yellow {
-  @include gradient-background(#fffbe6, #fff3cc);
-  color: rgb(90, 86, 71);
+
+.total-cost {
+  background-color: #f8f6f1;
+  color: $text-dark;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid $border-light;
+
+  .value {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
 }
 
 // Technical Details
 .technical-details {
-  @include gradient-background(#fff5f5, #ffe6e6);
-  padding: 1.2rem;
-  border-radius: 12px;
-  border-left: 4px solid $accent-red;
-  margin-bottom: 2rem;
-
+  padding: 1rem;
   h3 {
     color: $text-dark;
     margin-bottom: 1rem;
@@ -458,16 +462,19 @@ input[type="number"] {
 
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, 1fr); // 2 columns
+  grid-template-rows: repeat(3, auto); // up to 3 rows
   gap: 1rem;
 }
 
 .tech-item {
+  background-color: #f8f6f1;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  padding: 1rem;
 
   &:last-child {
     border-bottom: none;
@@ -477,70 +484,21 @@ input[type="number"] {
 .tech-label {
   font-weight: 600;
   color: $text-medium;
+  text-align: center;
 }
 
 .tech-value {
   color: $accent-red;
   font-weight: 700;
-}
-
-// Payment Options
-.payment-options {
-  @include gradient-background(#f0fff4, #e6ffe6);
-  padding: 1.2rem;
-  border-radius: 12px;
-  border-left: 4px solid $green-primary;
-
-  h3 {
-    color: $text-dark;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-
-    &::before {
-      content: "💳";
-      margin-right: 10px;
-    }
-  }
-}
-
-.payment-highlight {
-  background: $bg-white;
-  padding: 1rem;
-  border-radius: 10px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.payment-amount {
-  font-size: 2rem;
-  font-weight: 700;
-  color: $green-primary;
-  margin-bottom: 0.5rem;
-}
-
-.payment-terms {
-  color: $text-light;
-  margin-bottom: 1rem;
-}
-
-.discount-badge {
-  @include gradient-background(#ff6b6b, #ee5a24);
-  color: $bg-white;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  animation: pulse 2s infinite;
-  transition: all 0.3s ease;
-
-  &:hover {
-    @include gradient-background(#ee5a24, #ff6b6b);
-    transform: scale(1.05);
-  }
+.tech-icon {
+  color: $text-dark;
+  margin: 0.5rem;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.5rem;
 }
 
 // Blurred Background for Form
@@ -562,11 +520,11 @@ input[type="number"] {
   .form {
     max-width: 100%;
     width: 98%;
-    padding: 0.5rem;
     top: 4vh;
   }
 
-  .form-instructions, .results-header {
+  .form-instructions,
+  .results-header {
     h2 {
       font-size: 1.1rem;
       font-weight: 800;
@@ -589,7 +547,7 @@ input[type="number"] {
       width: 20vw;
       max-width: 20vh;
       top: 20%;
-      right: 5%;
+      right: 15%;
     }
     .casa2 {
       width: 40%;
@@ -597,6 +555,26 @@ input[type="number"] {
       top: 10%;
       left: 25%;
     }
+  }
+
+  .results-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .result-card {
+    width: 90%;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .red {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .green {
+    border-radius: 0 0 12px 12px;
   }
 
   .form-section {

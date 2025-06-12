@@ -292,72 +292,97 @@ const Form: React.FC<{ initialBill?: number; onClose?: () => void }> = ({
               <div className="value">
                 R$ {results.electricityBill.toFixed(2).replace(".", ",")}
               </div>
-              <div className="description">Valor mensal médio</div>
             </div>
-            <div className="result-card blue">
-              <h3>Parcela Mensal do Sistema</h3>
+            <div className="result-card green">
+              <h3>Parcela Mensal</h3>
               <div className="value">
                 R$ {results.monthlyPayment.toFixed(2).replace(".", ",")}
               </div>
-              <div className="description">Financiamento solar</div>
             </div>
-            <div className="result-card green">
-              <h3>Economia Mensal</h3>
-              <div className="value">
-                R$ {results.monthlySavings.toFixed(2).replace(".", ",")}
-              </div>
-              <div className="description">Sua economia desde o 1º mês</div>
-            </div>
-            <div className="result-card yellow">
-              <h3>Custo Total do Projeto</h3>
-              <div className="value">
-                R$ {results.totalCost.toFixed(2).replace(".", ",")}
-              </div>
-              <div className="description">Investimento completo</div>
+          </div>
+          <div className="total-cost">
+            <div className="value">
+              Custo Total do Projeto R$ {results.totalCost.toFixed(2).replace(".", ",")}
             </div>
           </div>
           {/* Technical Details */}
           <div className="technical-details">
-            <h3>Detalhes Técnicos da Instalação</h3>
             <div className="tech-grid">
               <div className="tech-item">
+                <Image
+                  className="tech-icon"
+                  src="/simulador/bulb2.svg"
+                  alt="Painel Solar"
+                  width={50}
+                  height={50}
+                />
                 <span className="tech-label">Geração Mensal Média:</span>
                 <span className="tech-value">
                   {results.monthlyGeneration} kWh/mês
                 </span>
               </div>
               <div className="tech-item">
+                <Image
+                  className="tech-icon"
+                  src="/simulador/bolt.svg"
+                  alt="Painel Solar"
+                  width={50}
+                  height={50}
+                />
                 <span className="tech-label">Potência do Sistema:</span>
                 <span className="tech-value">
                   {results.systemPower.toFixed(1)} kWp
                 </span>
               </div>
               <div className="tech-item">
+                <Image
+                  className="tech-icon"
+                  src="/simulador/solar_power.svg"
+                  alt="Painel Solar"
+                  width={50}
+                  height={50}
+                />
                 <span className="tech-label">Número de Painéis:</span>
                 <span className="tech-value">
                   {results.panelCount} painéis de 550W
                 </span>
               </div>
               <div className="tech-item">
+                <Image
+                  className="tech-icon"
+                  src="/simulador/inversor.svg"
+                  alt="Painel Solar"
+                  width={50}
+                  height={50}
+                />
                 <span className="tech-label">Inversor:</span>
                 <span className="tech-value">{results.inverterModel}</span>
               </div>
               <div className="tech-item">
+                <Image
+                  className="tech-icon"
+                  src="/simulador/money_off.svg"
+                  alt="Painel Solar"
+                  width={50}
+                  height={50}
+                />
                 <span className="tech-label">Desconto Aplicado:</span>
                 <span className="tech-value">{results.discount}% OFF</span>
               </div>
-            </div>
-          </div>
-          {/* Payment Options */}
-          <div className="payment-options">
-            <h3>Opções de Pagamento</h3>
-            <div className="payment-highlight">
-              <div className="payment-amount">
-                60x de R${" "}
-                {results.installmentAmount.toFixed(2).replace(".", ",")}
+              <div className="tech-item">
+                <Image
+                  className="tech-icon"
+                  src="/simulador/finance_chip.svg"
+                  alt="Painel Solar"
+                  width={50}
+                  height={50}
+                />
+                <span className="tech-label">Opções de Pagamento:</span>
+                <span className="tech-value">
+                  60x de R${" "}
+                  {results.installmentAmount.toFixed(2).replace(".", ",")}
+                </span>
               </div>
-              <div className="payment-terms">com 120 dias de carência</div>
-              <button className="discount-badge">🎉 Promoção Especial!</button>
             </div>
           </div>
           <button className="btn-consultant">Falar com um Consultor</button>
