@@ -181,6 +181,13 @@ const Form: React.FC<{ initialBill?: number; onClose?: () => void }> = ({
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  React.useEffect(() => {
+    document.body.classList.add("form-open");
+    return () => {
+      document.body.classList.remove("form-open");
+    };
+  }, []);
+  
   // Phone mask
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(formatPhone(e.target.value));
@@ -302,7 +309,8 @@ const Form: React.FC<{ initialBill?: number; onClose?: () => void }> = ({
           </div>
           <div className="total-cost">
             <div className="value">
-              Custo Total do Projeto R$ {results.totalCost.toFixed(2).replace(".", ",")}
+              Custo Total do Projeto R${" "}
+              {results.totalCost.toFixed(2).replace(".", ",")}
             </div>
           </div>
           {/* Technical Details */}

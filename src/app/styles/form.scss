@@ -502,18 +502,40 @@ input[type="number"] {
 }
 
 // Blurred Background for Form
-.blurred-bg {
-  #main-content,
-  header,
-  footer {
-    filter: blur(5px) !important;
-    pointer-events: none;
-    user-select: none;
-  }
+.main-content {
+  transition: filter 0.3s ease;
 }
 
-#main-form {
-  z-index: 1001;
+.blurred-bg {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+/* Hide scrollbar when form is open */
+.form-open {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* Apply to both body and html */
+body.form-open,
+html.form-open {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+.modal-form-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto; /* Allow scrolling within the modal if needed */
 }
 
 @media (max-width: $mobile) {

@@ -12,7 +12,8 @@ main {
   padding: 6rem 8rem;
   height: 70vh;
   z-index: 1;
-
+  overflow: hidden;
+  
   h1 {
     color: $bg-light;
     font-size: 2.5rem;
