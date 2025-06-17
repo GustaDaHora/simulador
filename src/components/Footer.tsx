@@ -6,11 +6,11 @@ const Footer: React.FC = () => (
     <p>
       Desenvolvido por{" "}
       <a
-        href="#"
+        href="https://www.linkedin.com/in/gustavo-dahora/"
         target="_blank"
         className="underline text-gray-100"
       >
-        Seu Nome
+        Gustavo da Hora
       </a>
     </p>
   </footer>
