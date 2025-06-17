@@ -2,8 +2,12 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 
-const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
+const FirstPage: React.FC<{ 
+  onSimulate?: (bill: number) => void;
+  isFormOpen?: boolean; // Add this prop to track form state
+}> = ({
   onSimulate,
+  isFormOpen = false,
 }) => {
   const [electricityBill, setElectricityBill] = useState(100);
   const [hideBg, setHideBg] = useState(false);
@@ -36,8 +40,26 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
     if (onSimulate) onSimulate(electricityBill);
   };
 
+  // Check if we're on mobile (you can adjust this breakpoint)
+  const [isMobile, setIsMobile] = useState(false);
+  
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust breakpoint as needed
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Only handle mouse movement on desktop and when form is not open
+  const shouldHandleMouseMovement = !isMobile && !isFormOpen;
+
   // Handles mouse movement to detect direction
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (!shouldHandleMouseMovement) return;
+    
     if (lastY.current !== null) {
       if (e.clientY < lastY.current) {
         setHideBg(false); // Mouse moving up: now show elements
@@ -50,14 +72,35 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
 
   // Trigger animation on mouse enter as well
   const handleMouseEnter = (e: React.MouseEvent) => {
+    if (!shouldHandleMouseMovement) return;
+    
     setHideBg(true); // Now hide elements on enter
     lastY.current = e.clientY;
   };
 
   // Reset lastY when mouse leaves
   const handleMouseLeave = () => {
+    if (!shouldHandleMouseMovement) return;
+    
     setHideBg(false); // Now show elements on leave
     lastY.current = null;
+  };
+
+  // Determine which CSS classes to apply
+  const getImageClasses = (baseClass: string) => {
+    let classes = baseClass;
+    
+    // Add mouse movement animation class (only on desktop when form is closed)
+    if (shouldHandleMouseMovement && hideBg) {
+      classes += " hide-bg-anim";
+    }
+    
+    // Add form blur animation class (when form is open)
+    if (isFormOpen) {
+      classes += " form-blur-anim";
+    }
+    
+    return classes;
   };
 
   return (
@@ -68,7 +111,7 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
       onMouseEnter={handleMouseEnter}
     >
       <Image
-        className={`circle${hideBg ? ' hide-bg-anim' : ''}`}
+        className={getImageClasses("circle")}
         src="/simulador/circle.svg"
         alt="Círculo ilustrativo"
         width={600}
@@ -76,27 +119,51 @@ const FirstPage: React.FC<{ onSimulate?: (bill: number) => void }> = ({
         priority
       />
       <Image
-        className="casa1"
-        src="/simulador/casa1.png"
+        className={getImageClasses("casa1")}
+        src="/simulador/casas.png"
         alt="Casa ilustrativa"
-        width={400}
-        height={300}
+        width={450}
+        height={850}
         priority
       />
       <Image
-        className={`cloud2${hideBg ? ' hide-bg-anim' : ''}`}
+        className={getImageClasses("casa3")}
+        src="/simulador/casa3.png"
+        alt="Casa ilustrativa"
+        width={350}
+        height={350}
+        priority
+      />
+      <Image
+        className={getImageClasses("cloud2")}
         src="/simulador/cloud2.svg"
         alt="Nuvem ilustrativa"
-        width={90}
-        height={60}
+        width={80}
+        height={70}
         priority
       />
       <Image
-        className={`cloud3${hideBg ? ' hide-bg-anim' : ''}`}
+        className={getImageClasses("cloud3")}
         src="/simulador/cloud3.svg"
         alt="Nuvem ilustrativa"
         width={90}
         height={60}
+        priority
+      />
+      <Image
+        className={getImageClasses("cloud4")}
+        src="/simulador/cloud4.png"
+        alt="Nuvem ilustrativa"
+        width={300}
+        height={100}
+        priority
+      />
+      <Image
+        className={getImageClasses("fundo")}
+        src="/simulador/fundo.png"
+        alt="Fundo ilustrativo"
+        width={500}
+        height={300}
         priority
       />
       <div className="main-div">
