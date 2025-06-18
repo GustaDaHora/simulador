@@ -80,7 +80,7 @@ export default function Home() {
       <div ref={mainContentRef} className="main-content">
         <Header />
         <FirstPage onSimulate={handleSimulate} />
-        <SecondPage />
+        {/* <SecondPage /> */}
         <Footer />
       </div>
     </div>

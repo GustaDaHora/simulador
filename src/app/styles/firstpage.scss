@@ -10,7 +10,7 @@ main {
   @include gradient-background($primary-color, $primary-dark, 180deg);
   position: relative;
   padding: 5rem 8rem;
-  height: 70vh;
+  height: 75vh;
   z-index: 1;
   overflow: hidden;
 

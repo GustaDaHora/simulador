@@ -3,7 +3,10 @@
 
 footer {
   background: $primary-color;
-  color: $bg-light;
+  color: $text-dark;
   text-align: center;
-  padding: 20px;
+  padding: 10px 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
