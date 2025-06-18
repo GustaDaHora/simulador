@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import FirstPage from "../components/FirstPage";
 import Form from "../components/Form";
 import Footer from "../components/Footer";
-import SecondPage from "@/components/SecondPage";
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -80,7 +79,6 @@ export default function Home() {
       <div ref={mainContentRef} className="main-content">
         <Header />
         <FirstPage onSimulate={handleSimulate} />
-        {/* <SecondPage /> */}
         <Footer />
       </div>
     </div>
