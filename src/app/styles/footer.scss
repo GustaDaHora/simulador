@@ -6,7 +6,236 @@ footer {
   color: $text-dark;
   text-align: center;
   padding: 20px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
+  overflow-y: hidden;
+}
+
+// Footer styles migrated from HTML classes
+.footer-root {
+  position: relative;
+  background: $primary-dark;
+  width: 100%;
+  @media (min-width: 1024px) {
+    height: 504px;
+    padding-left: 108px;
+    padding-right: 108px;
+    padding-top: 108px;
+    padding-bottom: 40px;
+  }
+  padding: 1rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // Agora 3 colunas
+  align-items: start; // opcional: melhor alinhamento vertical dos títulos
+  gap: 1rem; // opcional: espaço entre colunas
+  margin-bottom: 0.5rem;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  @media (max-width: $mobile) {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    gap: 1rem;
+  }
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  @media (max-width: $mobile) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    align-items: flex-end;
+    .footer-section {
+      width: 100%;
+      max-width: 220px;
+    }
+  }
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+}
+
+.footer-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.footer-link {
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 0.75rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+}
+
+.footer-badges {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  width: 100%;
+}
+
+.footer-privacy {
+  color: #fff;
+  opacity: 0.4;
+  margin-top: 1rem;
+  font-size: 14px;
+  &:hover {
+    border-bottom: 1px solid #fff;
+  }
+  @media (min-width: 1024px) {
+    margin-top: 0;
+  }
+}
+
+.footer-copyright {
+  color: #fff;
+  opacity: 0.4;
+  font-size: 14px;
+}
+
+.footer-created {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  span {
+    color: #fff;
+    font-size: 0.875rem;
+    opacity: 0.4;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1.68px;
+  }
+}
+
+// Responsive Footer Styles
+@media (max-width: $mobile) {
+  .footer-root {
+    padding: 1rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    margin-bottom: 0.5rem;
+  }
+  .footer-section {
+    align-items: center;
+    text-align: center;
+  }
+  .contato-section {
+    position: absolute;
+    top: 25%;
+    left: 1.5rem;
+  }
+  .footer-title {
+    font-size: 1.7rem;
+  }
+  .footer-links {
+    margin-top: 12px;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .footer-link {
+    font-size: 0.95rem;
+    width: 100%;
+  }
+  .footer-contact {
+    margin-top: 12px;
+    gap: 0.5rem;
+  }
+  .footer-contact-item {
+    font-size: 0.95rem;
+  }
+  .footer-badges {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0.5rem 0;
+    img {
+      width: 32px !important;
+      height: auto !important;
+    }
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .footer-privacy,
+  .footer-copyright {
+    font-size: 12px;
+    margin-top: 0.5rem;
+    text-align: center;
+    width: 100%;
+  }
+  .footer-created {
+    margin-top: 0.5rem;
+    span {
+      font-size: 0.7rem;
+    }
+    img {
+      width: 40px !important;
+      height: auto !important;
+    }
+  }
 }
