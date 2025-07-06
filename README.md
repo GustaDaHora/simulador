@@ -14,7 +14,7 @@ This is a **Next.js-based landing page** built as a **preview** for a freelance 
 Most of the features were not implemented — it's just a rough draft/prototype.
 
 If you're looking for the **final version** of the website, check it out here:  
-👉 [Final Website](https://example.com) *(replace this with your actual URL)*
+👉 [Final Website](https://synergywebsite.vercel.app/)
 
 ---
 
