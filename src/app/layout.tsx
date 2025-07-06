@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./styles/globals.scss";
 
 export const metadata: Metadata = {
-  title: "Website Synergy",
+  title: "Website simulador",
   icons: {
     icon: "/simulador/favicon.png",
     shortcut: "/simulador/favicon.png",

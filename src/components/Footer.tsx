@@ -117,7 +117,7 @@ const Footer: React.FC = () => (
         Termos e Políticas de Privacidade
       </a>
       <p className="footer-copyright">
-        © 2024 Synergy Energia Solar - Todos os direitos reservados.
+        © 2024 simulador Energia Solar - Todos os direitos reservados.
       </p>
       <a href="" target="_blank" className="footer-created">
         <span>CREATED BY 

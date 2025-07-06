@@ -19,8 +19,8 @@ const Header: React.FC = () => (
 
     <div className="lower-header">
       <a href="#" className="logo">
-        <Image src="/simulador/bulb.svg" alt="Logo Synergy" width={50} height={50} />
-        <span>Synergy</span>
+        <Image src="/simulador/bulb.svg" alt="Logo simulador" width={50} height={50} />
+        <span>simulador</span>
       </a>
 
       <nav className="nav-menu">

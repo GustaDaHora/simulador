@@ -168,7 +168,7 @@ const FirstPage: React.FC<{
       />
       <div className="main-div">
         <div className="text-container">
-          <p>Synergy</p>
+          <p>simulador</p>
           <h1>Energia solar na ponta dos seus dedos</h1>
           <p>
             Calcule a economia potencial na sua conta de luz, utilizando nossa
